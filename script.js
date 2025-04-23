@@ -20,15 +20,21 @@ const mostrarEnPantalla = () => {
         let tachado = "";
         if (p.checked) {
             tachado = "checked";
-            document.getElementById("listado").innerHTML += `<input ${tachado} onchange=tachar(${i}) type="checkbox" id="tarea" name="tarea"><del>${p.tarea}</del></input> <br>`;
+            document.getElementById("listado").innerHTML += `<input ${tachado} onchange=tachar(${i}) type="checkbox" id="tarea" name="tarea"><del>${p.tarea} ⸻⸻ ${p.dateTachado}</del></input> <br>`;
         }
         else{
-        document.getElementById("listado").innerHTML += `<input ${tachado} onchange=tachar(${i}) type="checkbox" id="tarea" name="tarea">${p.tarea} ${p.dateAhora}</input> <br>`;}
+        document.getElementById("listado").innerHTML += `<input ${tachado} onchange=tachar(${i}) type="checkbox" id="tarea" name="tarea">${p.tarea} ⸻⸻ ${p.dateAhora}</input> <br>`;}
     });
 }
 
 const tachar = (indice) => {
     lista[indice].checked = !lista[indice].checked;
+    
+    if (lista[indice].checked) {
+        lista[indice].dateTachado = new Date();
+    } else {
+        lista[indice].dateTachado = undefined;
+    }
     mostrarEnPantalla();
 }
 
