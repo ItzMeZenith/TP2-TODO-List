@@ -1,7 +1,7 @@
 let lista = [];
 
 const agregar = () => {
-    let tareaIngresada = document.getElementById("tarea").value;
+    let tareaIngresada = document.getElementById("tareainput").value;
     const ahora = new Date()
 
     if(tareaIngresada != "")
@@ -40,4 +40,16 @@ const tachar = (indice) => {
 
 mostrarEnPantalla();
 
+function enterKeySubmit(){
+	document.getElementById("tareainput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.getElementById("botonsubmit").click();
+        }
+    });
+}
+
+enterKeySubmit()
+
 //al tachar y crear agregar dateTime
+
