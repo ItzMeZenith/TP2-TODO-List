@@ -27,13 +27,13 @@ const mostrarEnPantalla = () => {
     });
 }
 
-const tachar = (indice) => {
-    lista[indice].checked = !lista[indice].checked;
+const tachar = (i) => {
+    lista[i].checked = !lista[i].checked;
     
-    if (lista[indice].checked) {
-        lista[indice].dateTachado = new Date();
+    if (lista[i].checked) {
+        lista[i].dateTachado = new Date();
     } else {
-        lista[indice].dateTachado = undefined;
+        lista[i].dateTachado = undefined;
     }
     mostrarEnPantalla();
 }
@@ -51,5 +51,22 @@ function enterKeySubmit(){
 
 enterKeySubmit()
 
-//al tachar y crear agregar dateTime
+const borrarTareas = () => {
+    lista = [];
+    mostrarEnPantalla();
+    document.getElementById("tareaMasRapida").innerHTML = "La tarea mas rapido en completarse es: "
+};
 
+const tareaMasRapida = () => {
+    let tareaMasRapida = ""; 
+    let tareaViejaRapida = new Date();
+    for (let i = 0; i < lista.length; i++) {
+        if (lista[i].checked == true){
+            if ((lista[i].dateTachado.getTime()-lista[i].dateAhora.getTime()) < tareaViejaRapida) {
+                tareaViejaRapida = (lista[i].dateTachado.getTime()-lista[i].dateAhora.getTime());
+                tareaMasRapida = lista[i].tarea;
+            }
+        }
+        document.getElementById("tareaMasRapida").innerHTML = "La tarea mas rapido en completarse es: " + tareaMasRapida;
+    }
+}
